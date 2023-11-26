@@ -16,7 +16,7 @@ export type PostProps = {
 const Post: React.FC<{ post: PostProps }> = ({ post }) => {
   const authorName = post.author ? post.author.name : "Unknown author";
   return (
-    <div onClick={() => Router.push("/p/[id]", `/p/${post.id}`)}>
+    <div onClick={() => Router.push("/p/[id]", `/p/${post.id}`)}  className="cursor-pointer">
       <h2>{post.title}</h2>
       <small>By {authorName}</small>
       <ReactMarkdown children={post.content} />
@@ -24,6 +24,7 @@ const Post: React.FC<{ post: PostProps }> = ({ post }) => {
         div {
           color: inherit;
           padding: 2rem;
+          cursor: pointer;
         }
       `}</style>
     </div>
