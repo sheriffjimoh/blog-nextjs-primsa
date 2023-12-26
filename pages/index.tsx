@@ -6,7 +6,8 @@ import prisma from '../lib/prisma';
 
 export const getStaticProps: GetStaticProps = async () => {
 
-  const feed = await prisma.post.findMany({
+  let feed = [];
+  const data = await prisma.post.findMany({
     where: { published: true },
     include: {
       author: {
@@ -15,19 +16,11 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   });
 
-  // console.log(data)
-  // const feed = [
-  //   {
-  //     id: "1",
-  //     title: "Prisma is the perfect ORM for Next.js",
-  //     content: "[Prisma](https://github.com/prisma/prisma) and Next.js go _great_ together!",
-  //     published: false,
-  //     author: {
-  //       name: "Nikolas Burk",
-  //       email: "burk@prisma.io",
-  //     },
-  //   },
-  // ]
+  if (data) {
+    feed = data;
+  }
+  
+ 
   return { 
     props: { feed }, 
     revalidate: 10 
