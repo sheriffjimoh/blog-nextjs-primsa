@@ -15,9 +15,7 @@ const Draft: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       });
-
-      console.log(res)
-    //   await Router.push('/drafts');
+      await Router.push('/drafts');
     } catch (error) {
       console.error(error);
     }
